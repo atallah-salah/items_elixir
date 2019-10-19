@@ -80,4 +80,11 @@ defmodule ItemsApi do
     |> ItemsApi.Repo.update_all([])
   end
 
+  def clear_db do
+    # clear_db function used to delete all items in db
+    ItemsApi.Repo.delete_all(from item in Items)
+  end
 end
+
+# ItemsApi.clear_db
+# ItemsApi.get_all_available_items
