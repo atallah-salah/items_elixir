@@ -25,3 +25,31 @@ defmodule Items do
     timestamps()
   end
 end
+
+defmodule ItemsApi do
+  import Ecto.Query
+
+  def get_all_available_items do
+    query =
+    from item in Items,
+      where: item.is_deleted == false,
+      select: item
+  ItemsApi.Repo.all(query)
+  end
+
+  def get_all_deleted_items do
+    query =
+    from item in Items,
+      where: item.is_deleted == true,
+      select: item
+  ItemsApi.Repo.all(query)
+  end
+
+  def get_one_item(id) do
+    query =
+    from item in Items,
+      where: item."_id" == ^id,
+      select: item
+    ItemsApi.Repo.one(query)
+  end
+end
