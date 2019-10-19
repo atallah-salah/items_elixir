@@ -12,3 +12,16 @@ end
 defmodule ItemsApi.Repo do
   use Ecto.Repo, otp_app: :itemsApi
 end
+
+defmodule Items do
+  use Ecto.Schema
+
+  @primary_key {:_id, :binary_id, autogenerate: true}
+  schema "item" do
+    field :title, :string
+    field :description , :string
+    field :thumbnail_url , :string
+    field :is_deleted , :boolean, default: false
+    timestamps()
+  end
+end
