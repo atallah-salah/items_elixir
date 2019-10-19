@@ -3,7 +3,7 @@ defmodule ItemsApi.MixProject do
 
   def project do
     [
-      app: :items_api,
+      app: :itemsApi,
       version: "0.1.0",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
@@ -11,7 +11,6 @@ defmodule ItemsApi.MixProject do
     ]
   end
 
-  # Run "mix help compile.app" to learn about applications.
   def application do
     [
       extra_applications: [:mongodb, :mongodb_ecto, :ecto, :poolboy],
@@ -19,7 +18,6 @@ defmodule ItemsApi.MixProject do
     ]
   end
 
-  # Run "mix help deps" to learn about dependencies.
   defp deps do
     [{:mongodb, ">= 0.0.0"},
     {:mongodb_ecto, "~> 0.2.1"},
