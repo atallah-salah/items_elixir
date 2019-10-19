@@ -52,4 +52,11 @@ defmodule ItemsApi do
       select: item
     ItemsApi.Repo.one(query)
   end
+
+  def insert_item(title, description \\ "") do
+    %Items{title: title, description: description}
+    |> Ecto.Changeset.change(%{})
+    |> ItemsApi.Repo.insert()
+  end
+
 end
