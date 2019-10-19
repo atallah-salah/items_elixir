@@ -59,4 +59,25 @@ defmodule ItemsApi do
     |> ItemsApi.Repo.insert()
   end
 
+  def update_item(id, title, description \\ "") do
+    # check if title or description edited or not included
+    cond do
+      title === "" ->
+        from(item in Items, where: item."_id" == ^id, update: [set: [description: ^description]])
+        |> ItemsApi.Repo.update_all([])
+      description === "" ->
+        from(item in Items, where: item."_id" == ^id, update: [set: [title: ^title]])
+        |> ItemsApi.Repo.update_all([])
+      description !== "" ->
+        from(item in Items, where: item."_id" == ^id, update: [set: [title: ^title],set: [description: ^description]])
+        |> ItemsApi.Repo.update_all([])
+    end
+  end
+
+  def delete_item(id) do
+    # delete_item function change item is_deleted to true
+    from(item in Items, where: item."_id" == ^id, update: [set: [is_deleted: true]])
+    |> ItemsApi.Repo.update_all([])
+  end
+
 end
